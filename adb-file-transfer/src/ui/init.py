@@ -13,17 +13,18 @@ class Init:
 
     def init_addr(self):
         self.ui.src_addr.setText(os.path.abspath(os.path.curdir))
-        self.ui.device_addr.setText("/")
         self.ui.adb_addr.setText("adb.exe")
 
     def init_src_tree(self):
         src_tree = self.ui.src_tree
         src_tree.setHeaderLabel(os.path.abspath(os.curdir))
-        item = QtWidgets.QTreeWidgetItem()
-        item.setText(0, "..")
-        self.ui.src_tree.addTopLevelItem(item)
         src_tree.addTopLevelItems(list_dir(os.curdir))
         self.ui.src_tree.show()
 
     def init_device_tree(self):
-        self.ui.device_tree.setHeaderLabel("/")
+        lables = ["name", "mode", "date", "size"]
+        self.ui.device_tree.setHeaderLabels(lables)
+        self.ui.device_tree.setColumnCount(4)
+        self.ui.device_tree.setColumnWidth(0, 300)
+        self.ui.device_tree.setColumnWidth(1, 80)
+        self.ui.device_tree.setColumnWidth(2, 120)
